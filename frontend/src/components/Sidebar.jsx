@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function Sidebar() {
   return (
     <div className="w-64 bg-gray-800 text-white h-screen flex  flex-col p-4 fixed">
-      <h1 className="text-2xl font-bold mb-6">Inventario</h1>
+      <h1 className="text-2xl font-bold mb-6">Menu</h1>
       <NavLink
         to="/inventory"
         className={({ isActive }) =>

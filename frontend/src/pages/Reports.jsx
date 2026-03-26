@@ -34,7 +34,7 @@ export default function Reports() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4 ml-64">Reportes y Ventas</h1>
+      <h1 className="text-2xl font-bold mb-4 ml-64">Reportes</h1>
 
       {/* Dinero por producto */}
       <div className="mb-6 ml-64">

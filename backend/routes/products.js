@@ -3,13 +3,14 @@ const database = require('../models/productModel');
 
 // CREATE
 router.post('/', (req, res) => {
-  const { name, price, quantity, category, description, status, image } = req.body;
+  const { name, price, quantity, category, image } = req.body;
+  if (!name || !price || !quantity) {
+    return res.status(400).json({ error: 'Datos incompletos' });
+  }
 
-  database.run(
-    `INSERT INTO products 
-    (name, price, quantity, category, description, status, image, sold) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, 0)`,
-    [name, price, quantity, category, description, status || 'activo', image],
+    database.run(
+    `INSERT INTO products (name, price, quantity, category, image, sold) VALUES (?, ?, ?, ?, ?, 0)`,
+    [name, price, quantity, category, image],
     function (err) {
       if (err) return res.status(500).json(err);
       res.json({ id: this.lastID });
@@ -30,9 +31,9 @@ router.put('/:id', (req, res) => {
   const { name, price, quantity, sold, category, image } = req.body;
   database.run(
     `UPDATE products 
-     SET name=?, price=?, sold=?, quantity=?, category=?, description=?, status=?, image=? 
+     SET name=?, price=?, quantity=?, sold=?, category=?, image=? 
      WHERE id=?`,
-    [name, price, quantity, category, sold, description, status, image, req.params.id],
+    [name, price, quantity, sold, category, image, req.params.id],
     err => {
       if (err) return res.status(500).json(err);
       res.json({ updated: true });
