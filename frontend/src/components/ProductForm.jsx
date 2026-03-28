@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 
-export default function ProductForm({ onSave, productToEdit, onCancel }) {
+export default function ProductForm({ onSave, productToEdit, onCancel, categories = [] }) {
   const [form, setForm] = useState({ name: "", price: "", quantity: "", category: "" });
 
   useEffect(() => {
-    // Usamos un microtask para ejecutar setForm después del render actual
     Promise.resolve().then(() => {
       if (productToEdit) {
         setForm({
@@ -34,6 +33,7 @@ export default function ProductForm({ onSave, productToEdit, onCancel }) {
       <h2 className="text-xl font-bold mb-2 text-center">
         {productToEdit ? "Editar Producto" : "Agregar Producto"}
       </h2>
+
       <b>Nombre</b>
       <input
         placeholder="Ej: Coca-cola"
@@ -41,6 +41,7 @@ export default function ProductForm({ onSave, productToEdit, onCancel }) {
         onChange={(e) => setForm({ ...form, name: e.target.value })}
         className="border p-2 rounded"
       />
+
       <b>Precio</b>
       <input
         placeholder="Ej: 250"
@@ -49,6 +50,7 @@ export default function ProductForm({ onSave, productToEdit, onCancel }) {
         onChange={(e) => setForm({ ...form, price: e.target.value })}
         className="border p-2 rounded"
       />
+
       <b>Cantidad</b>
       <input
         placeholder="Ej: 100"
@@ -57,13 +59,21 @@ export default function ProductForm({ onSave, productToEdit, onCancel }) {
         onChange={(e) => setForm({ ...form, quantity: e.target.value })}
         className="border p-2 rounded"
       />
+
       <b>Categoría</b>
-      <input
-        placeholder="Ej: Refrescos"
+      <select
         value={form.category}
         onChange={(e) => setForm({ ...form, category: e.target.value })}
         className="border p-2 rounded"
-      />
+      >
+        <option value="">Selecciona una categoría</option>
+        {categories.map((cat) => (
+          <option key={cat} value={cat}>
+            {cat}
+          </option>
+        ))}
+      </select>
+
       <div className="flex gap-2">
         <button
           type="submit"

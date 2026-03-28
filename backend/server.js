@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const productsRoutes = require('./routes/products'); // ruta CRUD
-
+const categoriesRoutes = require("./routes/categories");
 const app = express();
 
 // Middleware
@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 
 // Rutas de productos
 app.use('/api/products', productsRoutes);
+app.use("/api/categories", categoriesRoutes);
 
 // Servidor
 const PORT = 3000;

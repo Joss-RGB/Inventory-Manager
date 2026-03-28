@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import Inventory from "./pages/Inventory";
 import AddEditProduct from "./pages/AddEditProduct";
 import Reports from "./pages/Reports";
+import Categories from "./pages/Categories"; // <-- importar
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
             <Route path="/add" element={<AddEditProduct />} />
             <Route path="/edit/:id" element={<AddEditProduct />} />
             <Route path="/reports" element={<Reports />} />
+            <Route path="/categories" element={<Categories />} /> {/* <-- nueva ruta */}
           </Routes>
         </div>
       </div>

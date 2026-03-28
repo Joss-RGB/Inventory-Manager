@@ -33,10 +33,15 @@ export default function ProductList({ products, onDelete, onEdit, onSell }) {
             </button>
             <button
               className="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-1 rounded"
-              onClick={() => onDelete(p.id)}
+              onClick={() => {
+                if (window.confirm("¿Estás seguro que deseas eliminar este producto? Esto borrará todo lo relacionado con él.")) {
+                  onDelete(p.id);
+                }
+              }}
             >
               Eliminar
             </button>
+
           </div>
         </div>
       ))}

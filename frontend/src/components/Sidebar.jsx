@@ -2,8 +2,10 @@ import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
   return (
-    <div className="w-64 bg-gray-800 text-white h-screen flex  flex-col p-4 fixed">
+    <div className="w-64 bg-gray-800 text-white h-screen flex flex-col p-4 fixed">
       <h1 className="text-2xl font-bold mb-6">Menu</h1>
+
+      {/* Sección principal */}
       <NavLink
         to="/inventory"
         className={({ isActive }) =>
@@ -13,6 +15,17 @@ export default function Sidebar() {
         Inventario
       </NavLink>
       <NavLink
+        to="/reports"
+        className={({ isActive }) =>
+          `mb-2 px-4 py-2 rounded hover:bg-gray-700 ${isActive ? "bg-gray-700" : ""}`
+        }
+      >
+        Reportes
+      </NavLink>
+
+      {/* Nueva sección de Configuración */}
+      <h2 className="text-lg font-semibold mt-6 mb-2">Configuración</h2>
+      <NavLink
         to="/add"
         className={({ isActive }) =>
           `mb-2 px-4 py-2 rounded hover:bg-gray-700 ${isActive ? "bg-gray-700" : ""}`
@@ -21,12 +34,20 @@ export default function Sidebar() {
         Agregar Producto
       </NavLink>
       <NavLink
-        to="/reports"
+        to="/Categories"
         className={({ isActive }) =>
           `mb-2 px-4 py-2 rounded hover:bg-gray-700 ${isActive ? "bg-gray-700" : ""}`
         }
       >
-        Reportes
+        Categorías
+      </NavLink>
+      <NavLink
+        to="/settings"
+        className={({ isActive }) =>
+          `mb-2 px-4 py-2 rounded hover:bg-gray-700 ${isActive ? "bg-gray-700" : ""}`
+        }
+      >
+        Ajustes Generales
       </NavLink>
     </div>
   );
